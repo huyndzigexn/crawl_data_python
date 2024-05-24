@@ -15,18 +15,16 @@ def get_response(url, proxy):
         if response.status_code == 503:
             time.sleep(5)  # Wait for 5 seconds before retrying
             new_proxy = FreeProxy().get()
-            with open('suumo_output.log', 'a') as f:
-                print(f'Call {url} again with new proxy: {new_proxy}', file=f)
+            print(f'Call {url} again with new proxy: {new_proxy}')
             return get_response(url, new_proxy)  # Recursively call the function with a new proxy
         elif response.status_code != 200:  # Handle other HTTP status codes
-            with open('suumo_output.log', 'a') as f:
-                print(f'Non-200 status code {response.status_code} received. Retrying...', file=f)
+            print(f'Non-200 status code {response.status_code} received. Retrying...')
             time.sleep(5)
             new_proxy = FreeProxy().get()
             return get_response(url, new_proxy)
         return response
     except requests.RequestException as e:
-        print(f'Error occurred: {e}', file=f)
+        print(f'Error occurred: {e}')
         return None
 
 def print_title(response):
