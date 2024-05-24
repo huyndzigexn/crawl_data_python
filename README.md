@@ -1,2 +1,3 @@
-# crawl_data_python
-Crawl data (Python)
+# Docunent
+- Set up python: https://docs.python.org/3/using/index.html
+- Selenium :https://www.selenium.dev/
